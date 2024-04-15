@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.dto;
+package capstone.replyRecoommend.gpt.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GPTResponse {
+public class GptResponse {
     private List<Choice> choices;
 
 
