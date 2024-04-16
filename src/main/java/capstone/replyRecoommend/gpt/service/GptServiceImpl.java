@@ -1,7 +1,7 @@
 package capstone.replyRecoommend.gpt.service;
 
 //import capstone.replyRecoommend.gpt.config.GptConfig;
-import capstone.replyRecoommend.gpt.config.GptWebClient;
+import capstone.replyRecoommend.config.GptWebClient;
 import capstone.replyRecoommend.gpt.converter.GptConverter;
 import capstone.replyRecoommend.gpt.dto.GptResponse;
 import capstone.replyRecoommend.gpt.dto.ReplyRequestDTO;
