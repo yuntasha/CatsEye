@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.gpt.config;
+package capstone.replyRecoommend.config;
 
 import capstone.replyRecoommend.gpt.dto.GptRequest;
 import capstone.replyRecoommend.gpt.dto.GptResponse;
