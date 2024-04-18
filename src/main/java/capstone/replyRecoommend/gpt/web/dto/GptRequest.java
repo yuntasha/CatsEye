@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.gpt.dto;
+package capstone.replyRecoommend.gpt.web.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

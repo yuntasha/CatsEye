@@ -5,6 +5,7 @@ import capstone.replyRecoommend.exception.errorcode.CommonErrorCode;
 import capstone.replyRecoommend.gpt.dto.ReplyRequestDTO;
 import capstone.replyRecoommend.gpt.dto.ReplyResponseDTO;
 import capstone.replyRecoommend.gpt.service.GptService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class GptController {
 
 
     @PostMapping("/chat")
-    public ReplyResponseDTO.PostReplyRecommend chat(@RequestBody ReplyRequestDTO.PostReplyRecommend replyRecommend){
+    public ReplyResponseDTO.PostReplyRecommend chat(@RequestBody @Valid ReplyRequestDTO.PostReplyRecommend replyRecommend){
         return gptService.postReplyRecommend(replyRecommend);
     }
 

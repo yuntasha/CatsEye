@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.gpt.dto;
+package capstone.replyRecoommend.gpt.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package capstone.replyRecoommend.config;
+package capstone.replyRecoommend.gpt.web;
 
-import capstone.replyRecoommend.gpt.dto.GptRequest;
-import capstone.replyRecoommend.gpt.dto.GptResponse;
+import capstone.replyRecoommend.gpt.web.dto.GptRequest;
+import capstone.replyRecoommend.gpt.web.dto.GptResponse;
 import capstone.replyRecoommend.gpt.dto.ReplyRequestDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

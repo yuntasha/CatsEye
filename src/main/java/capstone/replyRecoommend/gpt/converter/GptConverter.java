@@ -1,6 +1,6 @@
 package capstone.replyRecoommend.gpt.converter;
 
-import capstone.replyRecoommend.gpt.dto.GptResponse;
+import capstone.replyRecoommend.gpt.web.dto.GptResponse;
 import capstone.replyRecoommend.gpt.dto.ReplyResponseDTO;
 
 public class GptConverter {
