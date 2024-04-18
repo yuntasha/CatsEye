@@ -1,9 +1,9 @@
 package capstone.replyRecoommend.gpt.service;
 
 //import capstone.replyRecoommend.gpt.config.GptConfig;
-import capstone.replyRecoommend.config.GptWebClient;
+import capstone.replyRecoommend.gpt.web.GptWebClient;
 import capstone.replyRecoommend.gpt.converter.GptConverter;
-import capstone.replyRecoommend.gpt.dto.GptResponse;
+import capstone.replyRecoommend.gpt.web.dto.GptResponse;
 import capstone.replyRecoommend.gpt.dto.ReplyRequestDTO;
 import capstone.replyRecoommend.gpt.dto.ReplyResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class GptServiceImpl implements GptService{
-
     private final GptWebClient gptWebClient;
 
     public ReplyResponseDTO.PostReplyRecommend postReplyRecommend(ReplyRequestDTO.PostReplyRecommend replyRecommend){
