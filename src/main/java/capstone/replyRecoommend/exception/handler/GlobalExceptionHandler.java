@@ -3,7 +3,7 @@ package capstone.replyRecoommend.exception.handler;
 import capstone.replyRecoommend.exception.BusinessException;
 import capstone.replyRecoommend.exception.errorcode.CommonErrorCode;
 import capstone.replyRecoommend.exception.errorcode.ErrorCode;
-import capstone.replyRecoommend.exception.response.ErrorResponse;
+import capstone.replyRecoommend.global.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpHeaders;
@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 @Slf4j
@@ -69,10 +66,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ErrorResponse makeErrorResponse(final ErrorCode errorCode) {
-        return ErrorResponse.builder()
-                .code(errorCode.getCode())
-                .message(errorCode.getMessage())
-                .build();
+        return ErrorResponse.of(errorCode);
     }
 
     private ResponseEntity<Object> handleExceptionInternal(final ErrorCode errorCode, final String message) {
@@ -81,10 +75,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ErrorResponse makeErrorResponse(final ErrorCode errorCode, final String message) {
-        return ErrorResponse.builder()
-                .code(errorCode.getCode())
-                .message(message)
-                .build();
+        return ErrorResponse.of(errorCode, message);
     }
 
     private ResponseEntity<Object> handleExceptionInternal(final BindException e, final ErrorCode errorCode) {
@@ -93,16 +84,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ErrorResponse makeErrorResponse(final BindException e, final ErrorCode errorCode) {
-        final List<ErrorResponse.ValidationError> validationErrorList = e.getBindingResult()
+        ErrorResponse errorResponse = ErrorResponse.of(errorCode);
+        e.getBindingResult()
                 .getFieldErrors()
                 .stream()
                 .map(ErrorResponse.ValidationError::of)
-                .collect(Collectors.toList());
+                .forEach(ve -> errorResponse.getErrors().add(ve));
 
-        return ErrorResponse.builder()
-                .code(errorCode.getCode())
-                .message(errorCode.getMessage())
-                .errors(validationErrorList)
-                .build();
+        return errorResponse;
     }
 }
