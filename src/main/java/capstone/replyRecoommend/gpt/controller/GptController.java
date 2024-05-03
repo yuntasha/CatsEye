@@ -2,6 +2,7 @@ package capstone.replyRecoommend.gpt.controller;
 
 import capstone.replyRecoommend.exception.BusinessException;
 import capstone.replyRecoommend.exception.errorcode.CommonErrorCode;
+import capstone.replyRecoommend.global.response.SuccessResponse;
 import capstone.replyRecoommend.gpt.dto.ReplyRequestDTO;
 import capstone.replyRecoommend.gpt.dto.ReplyResponseDTO;
 import capstone.replyRecoommend.gpt.service.GptService;
@@ -17,8 +18,8 @@ public class GptController {
 
 
     @PostMapping("/chat")
-    public ReplyResponseDTO.PostReplyRecommend chat(@RequestBody @Valid ReplyRequestDTO.PostReplyRecommend replyRecommend){
-        return gptService.postReplyRecommend(replyRecommend);
+    public SuccessResponse<ReplyResponseDTO.PostReplyRecommend> chat(@RequestBody @Valid ReplyRequestDTO.PostReplyRecommend replyRecommend){
+        return SuccessResponse.success(gptService.postReplyRecommend(replyRecommend));
     }
 
     @GetMapping("/test")
