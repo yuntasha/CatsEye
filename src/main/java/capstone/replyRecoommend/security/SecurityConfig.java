@@ -1,7 +1,8 @@
 package capstone.replyRecoommend.security;
 
 import capstone.replyRecoommend.auth.handler.AuthSuccessHandler;
-import capstone.replyRecoommend.auth.service.UserService;
+import capstone.replyRecoommend.auth.repository.UserRepository;
+import capstone.replyRecoommend.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -19,10 +20,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Value(value = "jwt.secret")
-    private String secretKey;
-
-    private final UserService userService;
+    private final AuthService userService;
+    @Value("${jwt.access}")
+    private String accessKey;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -32,11 +32,15 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable) // CORS 삭젯
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("oauth2/authorization/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/**").authenticated()
+                        .requestMatchers("oauth2/authorization/**", "/api/v1/auth/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtFilter(userService, accessKey), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(e -> e
+                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+                        .accessDeniedHandler(new JwtAccessDeniedHandler()))
+                .oauth2Login(oAuth -> oAuth
+                        .successHandler(new AuthSuccessHandler(userService)))
                 .build();
     }
 }

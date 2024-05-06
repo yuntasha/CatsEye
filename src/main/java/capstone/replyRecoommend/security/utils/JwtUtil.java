@@ -1,10 +1,23 @@
 package capstone.replyRecoommend.security.utils;
 
+import capstone.replyRecoommend.exception.BusinessException;
+import capstone.replyRecoommend.exception.errorcode.CommonErrorCode;
+import capstone.replyRecoommend.security.JwtException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import java.security.Key;
 import java.util.Date;
+
+import static capstone.replyRecoommend.security.JwtException.EXPIRED_TOKEN;
+import static capstone.replyRecoommend.security.JwtException.UNSUPPORTED_TOKEN;
 
 public class JwtUtil {
 
@@ -13,20 +26,27 @@ public class JwtUtil {
                 .getBody().get("userId", Long.class);
     }
 
-    public static boolean isExpired(String token, String secretKey) throws Exception{
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token)
-                .getBody().getExpiration().before(new Date());
+    public static boolean isExpired(String token, String secretKey, HttpServletRequest request){
+        try{
+            return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token)
+                    .getBody().getExpiration().before(new Date());
+        } catch (ExpiredJwtException e) {
+            request.setAttribute("exception", EXPIRED_TOKEN);
+            return false;
+        } catch (Exception e) {
+            request.setAttribute("exception", UNSUPPORTED_TOKEN);
+            return false;
+        }
     }
 
-    public static String createJwt(Long userId, String secretKey, Long expiredMs){
-        Claims claims = Jwts.claims();
-        claims.put("userId", userId);
-
-        return Jwts.builder()
-                .setClaims(claims) // 유저네임이라는 클레임 공간에 들어가는 것
-                .setIssuedAt(new Date(System.currentTimeMillis())) // 만든 시간
-                .setExpiration(new Date(System.currentTimeMillis() + expiredMs)) // 만료 시간
-                .signWith(SignatureAlgorithm.HS256, secretKey) // signature 제작
-                .compact();
+    public static boolean isExpired(String token, String secretKey){
+        try{
+            return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token)
+                    .getBody().getExpiration().before(new Date());
+        } catch (ExpiredJwtException e) {
+            throw new BusinessException(CommonErrorCode.EXPIRED_TOKEN);
+        } catch (Exception e) {
+            throw new BusinessException(CommonErrorCode.UNSUPPORTED_TOKEN);
+        }
     }
 }
