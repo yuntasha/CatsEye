@@ -1,6 +1,7 @@
 package capstone.replyRecoommend.global.response;
 
 import capstone.replyRecoommend.exception.errorcode.ErrorCode;
+import capstone.replyRecoommend.security.JwtException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +33,14 @@ public class ErrorResponse extends ApiResponse{
         return new ErrorResponse(errorCode, message);
     }
 
+    private ErrorResponse(JwtException jwtException){
+        super(false, jwtException.getCode(), jwtException.getMessage());
+    }
+
+    public static ErrorResponse of(JwtException jwtException){
+        return new ErrorResponse(jwtException);
+    }
+
 
     @Getter
     @Builder
@@ -47,5 +56,14 @@ public class ErrorResponse extends ApiResponse{
                     .message(fieldError.getDefaultMessage())
                     .build();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "{\n" +
+                "    \"isSuccess\":" + super.getIsSuccess() + ",\n" +
+                "    \"code\":\"" + super.getCode() + "\",\n" +
+                "    \"message\":\"" + super.getMessage() + "\"\n" +
+                "}";
     }
 }

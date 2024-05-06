@@ -14,4 +14,12 @@ public class ReplyResponseDTO {
     public static class PostReplyRecommend{
         String message;
     }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    public static class Userid{
+        Long userId;
+    }
 }
