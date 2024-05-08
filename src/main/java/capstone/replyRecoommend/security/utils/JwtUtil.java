@@ -10,6 +10,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,8 @@ import java.util.Date;
 import static capstone.replyRecoommend.security.JwtException.EXPIRED_TOKEN;
 import static capstone.replyRecoommend.security.JwtException.UNSUPPORTED_TOKEN;
 
+@Component
+@RequiredArgsConstructor
 public class JwtUtil {
 
     public static Long getId(String token, String secretKey){

@@ -11,14 +11,23 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class GptRequest {
     private String model;
-    private List<Message> messages = new ArrayList<>();
+    private List<Message> messages;
     private float temperature;
     private int maxTokens;
 
-    public GptRequest(String model, String msg, Integer maxTokens) {
+    public GptRequest(String model, Integer maxTokens) {
         this.model = model;
-        this.messages.add(new Message("user", msg));
+        this.messages = new ArrayList<>();
         this.maxTokens = maxTokens;
         this.temperature = 0.7f;
     }
+
+    public void addMessage(String role, String message){
+        this.messages.add(new Message(role,message));
+    }
+
+    public static GptRequest of(String model,int maxTokens){
+        return new GptRequest(model,maxTokens);
+    }
+
 }
