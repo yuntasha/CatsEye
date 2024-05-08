@@ -19,7 +19,7 @@ public class AuthController {
 
     @GetMapping
     public void oauth2Login(HttpServletResponse response) throws IOException {
-        response.sendRedirect("http://localhost:8080/oauth2/authorization/google");
+        response.sendRedirect("http://13.209.162.245:8080/oauth2/authorization/google");
     }
 
     @PostMapping("/reissue")
