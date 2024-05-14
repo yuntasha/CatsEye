@@ -18,7 +18,7 @@ import java.io.IOException;
 public class AuthController {
     private final AuthService authService;
 
-    @Value("${spring.security.oauth2.client.registration.google.redirect-uri}")
+    @Value("${spring.security.oauth2.login-uri}")
     private String url;
 
     @GetMapping

@@ -50,6 +50,6 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
-            sudo docker rm -f $(docker ps -qa)
+            sudo docker rm -f $(sudo docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_REPO }}/replyrecommend-dev
-            docker run -itd -p 8080:8080 ${{ secrets.DOCKER_REPO }}/replyrecommend-dev
+            sudo docker run -itd -p 8080:8080 ${{ secrets.DOCKER_REPO }}/replyrecommend-dev
