@@ -1,10 +1,14 @@
 package capstone.replyRecoommend.auth.domain;
 
+import capstone.replyRecoommend.pet.domain.Pet;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -27,6 +31,9 @@ public class User {
     @Column(name = "user_role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Pet> petList = new ArrayList<>();
 
     @Builder
     public User(String email, String name){

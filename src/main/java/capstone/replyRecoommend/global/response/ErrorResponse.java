@@ -1,6 +1,6 @@
 package capstone.replyRecoommend.global.response;
 
-import capstone.replyRecoommend.exception.errorcode.ErrorCode;
+import capstone.replyRecoommend.global.exception.errorcode.ErrorCode;
 import capstone.replyRecoommend.security.JwtException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

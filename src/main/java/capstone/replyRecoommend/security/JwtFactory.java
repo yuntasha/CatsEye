@@ -1,8 +1,8 @@
 package capstone.replyRecoommend.security;
 
 import capstone.replyRecoommend.auth.dto.TokenMapper;
-import capstone.replyRecoommend.exception.BusinessException;
-import capstone.replyRecoommend.exception.errorcode.CommonErrorCode;
+import capstone.replyRecoommend.global.exception.BusinessException;
+import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
 import capstone.replyRecoommend.security.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
