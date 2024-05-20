@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.exception.errorcode;
+package capstone.replyRecoommend.global.exception.errorcode;
 
 import org.springframework.http.HttpStatus;
 

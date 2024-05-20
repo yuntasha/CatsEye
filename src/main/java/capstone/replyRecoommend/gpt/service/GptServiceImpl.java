@@ -1,8 +1,8 @@
 package capstone.replyRecoommend.gpt.service;
 
 
-import capstone.replyRecoommend.exception.BusinessException;
-import capstone.replyRecoommend.exception.errorcode.CommonErrorCode;
+import capstone.replyRecoommend.global.exception.BusinessException;
+import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
 import capstone.replyRecoommend.gpt.converter.GptConverter;
 import capstone.replyRecoommend.gpt.dto.ChatDtoReq;
 import capstone.replyRecoommend.gpt.dto.ChatDtoRes;

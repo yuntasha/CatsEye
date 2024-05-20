@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.filter;
+package capstone.replyRecoommend.security.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

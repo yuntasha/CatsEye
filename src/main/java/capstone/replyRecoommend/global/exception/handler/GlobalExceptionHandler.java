@@ -1,8 +1,8 @@
-package capstone.replyRecoommend.exception.handler;
+package capstone.replyRecoommend.global.exception.handler;
 
-import capstone.replyRecoommend.exception.BusinessException;
-import capstone.replyRecoommend.exception.errorcode.CommonErrorCode;
-import capstone.replyRecoommend.exception.errorcode.ErrorCode;
+import capstone.replyRecoommend.global.exception.BusinessException;
+import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
+import capstone.replyRecoommend.global.exception.errorcode.ErrorCode;
 import capstone.replyRecoommend.global.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.BadRequestException;

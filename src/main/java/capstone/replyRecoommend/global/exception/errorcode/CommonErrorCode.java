@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.exception.errorcode;
+package capstone.replyRecoommend.global.exception.errorcode;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
