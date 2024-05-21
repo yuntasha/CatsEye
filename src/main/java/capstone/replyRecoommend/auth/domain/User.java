@@ -1,20 +1,25 @@
 package capstone.replyRecoommend.auth.domain;
 
+import capstone.replyRecoommend.global.entity.BaseEntity;
 import capstone.replyRecoommend.pet.domain.Pet;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@DynamicUpdate
+@DynamicInsert
 @Getter
 @Table(name = "USER")
-public class User {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
