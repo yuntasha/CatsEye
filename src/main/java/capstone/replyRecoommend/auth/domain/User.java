@@ -37,6 +37,8 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private String profileUrl;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Pet> petList = new ArrayList<>();
 
