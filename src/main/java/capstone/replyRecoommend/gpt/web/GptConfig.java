@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Getter
 public class GptConfig {
-    @Value("${gpt.api.key}")
+    @Value("${web.gpt.api.key}")
     private String gptKey;
-    @Value("${gpt.api.url}")
+    @Value("${web.gpt.api.url}")
     private String gptUrl;
-    @Value("${gpt.model}")
+    @Value("${web.gpt.model}")
     private String recommendModel;
 
     @Bean

@@ -42,10 +42,18 @@ public class AuthServiceImpl implements AuthService {
 
     private User loginOrRegisterUser(AuthRequestDTO.LoginDTO loginDTO){
         Optional<User> findUser = userRepository.findByEmail(loginDTO.getEmail());
-        return findUser.orElseGet(() -> userRepository.save(User.builder()
-                .name(loginDTO.getName())
-                .email(loginDTO.getEmail())
-                .build()));
+        if (findUser.isPresent()) {
+            User user = findUser.get();
+            if (user.getProfileUrl().isEmpty()) user.updateUser(loginDTO);
+            return user;
+        }
+        else{
+            return userRepository.save(User.builder()
+                    .name(loginDTO.getName())
+                    .email(loginDTO.getEmail())
+                    .profileUrl(loginDTO.getProfileUrl())
+                    .build());
+        }
     }
 
     @Override

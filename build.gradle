@@ -38,6 +38,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
+	// xml parser
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+	implementation 'org.glassfish.jaxb:jaxb-core:2.3.0.1'
+	implementation 'com.sun.xml.bind:jaxb-impl:2.3.1'
+
+
+
 	//aws
 	implementation("com.amazonaws:aws-java-sdk-s3:1.12.174")
 

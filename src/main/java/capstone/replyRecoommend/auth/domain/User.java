@@ -1,5 +1,6 @@
 package capstone.replyRecoommend.auth.domain;
 
+import capstone.replyRecoommend.auth.dto.AuthRequestDTO;
 import capstone.replyRecoommend.global.entity.BaseEntity;
 import capstone.replyRecoommend.pet.domain.Pet;
 import jakarta.persistence.*;
@@ -43,9 +44,10 @@ public class User extends BaseEntity {
     private List<Pet> petList = new ArrayList<>();
 
     @Builder
-    public User(String email, String name){
+    public User(String email, String name, String profileUrl){
         this.email = email;
         this.name = name;
+        this.profileUrl = profileUrl;
         this.money = 0L;
         this.role = Role.USER;
     }
@@ -59,7 +61,8 @@ public class User extends BaseEntity {
         private final String value;
     }
 
-    public boolean validateByEmailAndId(Long id, String email){
-        return this.id.equals(id) && this.email.equals(email);
+    public void updateUser(AuthRequestDTO.LoginDTO loginDTO){
+        this.profileUrl = loginDTO.getProfileUrl();
+        this.name = loginDTO.getName();
     }
 }

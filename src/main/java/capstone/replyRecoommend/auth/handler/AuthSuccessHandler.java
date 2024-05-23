@@ -30,6 +30,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         TokenMapper tokenMapper = authService.loginUser(AuthRequestDTO.LoginDTO.builder()
                         .name(attributes.get("name").toString())
                         .email(attributes.get("email").toString())
+                        .profileUrl(attributes.get("picture").toString())
                         .build());
         response.sendRedirect(makeUrl(tokenMapper));
     }
