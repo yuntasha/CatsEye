@@ -44,7 +44,7 @@ public class AuthServiceImpl implements AuthService {
         Optional<User> findUser = userRepository.findByEmail(loginDTO.getEmail());
         if (findUser.isPresent()) {
             User user = findUser.get();
-            if (user.getProfileUrl().isEmpty()) user.updateUser(loginDTO);
+            if (user.getProfileUrl()==null || user.getProfileUrl().isEmpty()) user.updateUser(loginDTO);
             return user;
         }
         else{
