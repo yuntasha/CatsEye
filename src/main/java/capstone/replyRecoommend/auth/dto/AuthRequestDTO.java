@@ -12,6 +12,7 @@ public class AuthRequestDTO {
     public static class LoginDTO{
         private String name;
         private String email;
+        private String profileUrl;
     }
 
     @Getter
