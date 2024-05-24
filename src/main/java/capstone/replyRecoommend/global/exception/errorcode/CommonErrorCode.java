@@ -33,6 +33,7 @@ public enum CommonErrorCode implements ErrorCode{
     //hospital (4070~
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "4070", "해당 지역의 파일이 없습니다."),
     DATA_FILE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "4071", "병원 파일 파싱중 에러, 서버관리자에게 문의하세요"),
+    MARKER_NOT_FOUND(HttpStatus.NOT_FOUND, "4072", "해당 병원 혹은 약국이 존재하지 않습니다"),
 
     ;
 
