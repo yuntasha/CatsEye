@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable) // CORS 삭젯
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("oauth2/authorization/**", "/api/v1/auth/**", "/api/v1/marker/**").permitAll()
+                        .requestMatchers("oauth2/authorization/**", "/api/v1/auth/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new JwtFilter(userService, accessKey), UsernamePasswordAuthenticationFilter.class)
