@@ -20,11 +20,9 @@ public enum CommonErrorCode implements ErrorCode{
     USER_NOT_FOUND(HttpStatus.NOT_FOUND,"4001","해당 유저를 찾을 수 없습니다."),
 
     //pet error(4010~
-    PET_NOT_FOUND(HttpStatus.NOT_FOUND,"4001","반려동물을 찾을 수 없습니다."),
-
+    PET_NOT_FOUND(HttpStatus.NOT_FOUND,"4010","반려동물을 찾을 수 없습니다."),
 
     //chat error(4050~
-    MAP_ALREADY(HttpStatus.CONFLICT,"4050","이미 해당 채팅이 시작됐습니다. 다시 시작해주세요."),
     MAP_NOT_FOUND(HttpStatus.NOT_FOUND,"4051","해당 채팅이 존재하지 않습니다."),
 
     //file error(4060~
