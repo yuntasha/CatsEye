@@ -29,14 +29,15 @@ public class GptServiceImpl implements GptService{
     private final GptWebClient gptWebClient;
     private final Map<Long, GptRequest> memberChatMap = new HashMap<>();
 
+/*
     //초기 답변 추천
     @Override
     public ChatDtoRes.ChatAnwDtoRes initChat(Long userId, ChatDtoReq.initChatReq chatDtoReq){
         if(memberChatMap.containsKey(userId)){
             throw new BusinessException(CommonErrorCode.MAP_ALREADY);
         }
-        GptRequest gptRequest = gptWebClient.of(chatDtoReq.getLength());
-        addChatMessage(gptRequest,SYSTEM,initPrompt(chatDtoReq));
+        GptRequest gptRequest = gptWebClient.of(500);
+        addChatMessage(gptRequest,SYSTEM,"너는 고양이 눈과 관련된 질병을 알려주는 ai야.");
 
         String userMessage = makeMessage(chatDtoReq);
 
@@ -54,22 +55,29 @@ public class GptServiceImpl implements GptService{
 
     }
 
+ */
+
     //이어서 말하기
     @Override
     public ChatDtoRes.ChatAnwDtoRes chat(Long userId, ChatDtoReq.chatReq request){
-        if(!memberChatMap.containsKey(userId)){
-            throw new BusinessException(CommonErrorCode.MAP_NOT_FOUND);
+        GptRequest gptRequest;
+        if(memberChatMap.get(userId) == null){
+            gptRequest = gptWebClient.of(500);
+            addChatMessage(gptRequest,SYSTEM,"너는 고양이 눈과 관련된 질병을 알려주는 ai야.");
+
+        }else{
+            gptRequest = memberChatMap.get(userId);
         }
 
-        GptRequest gptRequest = memberChatMap.get(userId);
         addChatMessage(gptRequest,USER,request.getMessage());
 
-        GptResponse gptResponse = gptWebClient.replyRecommend(gptRequest);
+        GptResponse gptResponse = gptWebClient.assistantRes(gptRequest);
 
         String content = gptResponse.getChoices().get(0).getMessage().getContent();
 
         addChatMessage(gptRequest,ASSISTANT,content);
-        System.out.println(memberChatMap);
+        memberChatMap.put(userId,gptRequest);
+
         return GptConverter.answer(content);
 
     }
@@ -87,12 +95,7 @@ public class GptServiceImpl implements GptService{
         gptRequest.addMessage(role,message);
     }
 
-    private String initPrompt(ChatDtoReq.initChatReq chatDtoReq){
-        return String.format("너는 어떤 답장을 수정해주고 어떤 답장을 해야할지 추천해주는 ai야. " +
-                        "%s한테 메세지를 보낼거야, 현재 나의 상황은 %s인데 답장을 수정해주거나, 어떤 답장을 해야할지 추천해주는 ai야",
-                         chatDtoReq.getName(),chatDtoReq.getSituation());
-    }
-
+/*
     private String makeMessage(ChatDtoReq.initChatReq chatDtoReq) {
         if (!chatDtoReq.getMessage().isBlank()){
             log.info("exist content");
@@ -106,5 +109,7 @@ public class GptServiceImpl implements GptService{
         }
     }
 
+
+ */
 
 }
