@@ -55,6 +55,10 @@ public class PetServiceImpl implements PetService{
                 .map(o->PetConverter.searchPet(o))
                 .collect(Collectors.toList());
 
+        if(searchPetList.isEmpty()){
+            throw new BusinessException((CommonErrorCode.PET_NOT_FOUND));
+        }
+
         return searchPetList;
     }
 

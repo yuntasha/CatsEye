@@ -38,6 +38,7 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(length = 500)
     private String profileUrl;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
