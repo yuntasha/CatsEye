@@ -22,6 +22,9 @@ public enum CommonErrorCode implements ErrorCode{
     //pet error(4010~
     PET_NOT_FOUND(HttpStatus.NOT_FOUND,"4010","반려동물을 찾을 수 없습니다."),
 
+    //diagnosis error(4020~
+    DIAGNOSIS_NOT_FOUND(HttpStatus.NOT_FOUND,"4020","진단내역을 찾을 수 없습니다."),
+
     //chat error(4050~
     MAP_NOT_FOUND(HttpStatus.NOT_FOUND,"4051","해당 채팅이 존재하지 않습니다."),
 

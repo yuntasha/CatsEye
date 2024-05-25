@@ -35,7 +35,6 @@ public class PetController {
         return SuccessResponse.success(petService.toPet(Dto,userId,Image));
 
     }
-
     /**
      * 작성자 : 정주현
      * 내 반려동물 목록 조회
@@ -45,6 +44,17 @@ public class PetController {
         List<PetDtoRes.searchPet> searchPetList = petService.searchPet(userId);
 
         return SuccessResponse.success(searchPetList);
+    }
+
+    /**
+     * 작성자 : 정주현
+     * 내 반려동물 삭제
+     */
+    @PatchMapping("/remove")
+    public SuccessResponse<String> searchPet(@AuthenticationPrincipal Long userId,
+                                                                @RequestParam(name = "petId") Long petId){
+        petService.remove(petId);
+        return SuccessResponse.successWithoutResult("성공");
     }
 
 
