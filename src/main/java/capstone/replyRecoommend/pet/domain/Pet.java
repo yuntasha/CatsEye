@@ -73,5 +73,10 @@ public class Pet extends BaseEntity {
                     .petImageUrl(fileUrl)
                 .build();
     }
+    //==삭제 메서드==//
+    public void remove() {
+        this.petStatus = PetStatus.DELETE;
+    }
+
 
 }

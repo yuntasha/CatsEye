@@ -9,4 +9,6 @@ import java.util.List;
 public interface PetService {
     PetDtoRes.enrollPet toPet(PetDtoReq.toPetReq request, Long userId, MultipartFile file);
     List<PetDtoRes.searchPet> searchPet(Long userId);
+
+    void remove(Long petId);
 }

@@ -9,6 +9,7 @@ import capstone.replyRecoommend.diagnosis.dto.DiaDtoRes;
 import capstone.replyRecoommend.diagnosis.repository.DiaRepository;
 import capstone.replyRecoommend.global.exception.BusinessException;
 import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
+import capstone.replyRecoommend.pet.domain.Enum.PetStatus;
 import capstone.replyRecoommend.pet.domain.Pet;
 import capstone.replyRecoommend.pet.repository.PetRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -56,26 +57,18 @@ public class DiaServiceImpl implements DiaService {
         HttpEntity<String> entity = new HttpEntity<>(param , headers);
 
 
-
-
-
-
-
-
     }
-
  */
-
 
     @Override
     //진단 내역 조회
     public List<DiaDtoRes.searchDiagnosis> searchDiagnosis(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new BusinessException(CommonErrorCode.USER_NOT_FOUND));
 
-        List<Diagnosis> diagnosisList = diaRepository.findAllByPet_User(user);
+        List<Diagnosis> diagnosisList = diaRepository.findAllByPet_UserAndPet_PetStatus(user, PetStatus.ACTIVE);
 
         if (diagnosisList.isEmpty()) {
-            throw new BusinessException(CommonErrorCode.PET_NOT_FOUND);
+            throw new BusinessException(CommonErrorCode.DIAGNOSIS_NOT_FOUND);
         }
 
         return diagnosisList.stream()
