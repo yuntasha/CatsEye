@@ -8,6 +8,7 @@ public class PetDtoRes {
     @Getter
     @Builder
     public static class searchPet{
+        private Long perId;
         private String name;
         private Integer age;
         private String species;
