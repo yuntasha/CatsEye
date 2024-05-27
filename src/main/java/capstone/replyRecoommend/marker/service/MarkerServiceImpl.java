@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MarkerServiceImpl {
+public class MarkerServiceImpl implements MarkerService{
     private final MapWebClient mapWebClient;
     private final MarkerRepository markerRepository;
 
@@ -26,6 +26,18 @@ public class MarkerServiceImpl {
     public List<MarkerRes.MarkerPointRes> getMarkerList(){
         List<Marker> nodes = markerRepository.findAll();
         return nodes.stream().map(Marker::toMarkerPoint).toList();
+    }
+
+    @Transactional
+    public List<MarkerRes.MarkerPointRes> getNearList(String lat, String lng, Marker.Type type){
+        List<Marker> near = findNear(lat, lng, type);
+        return near.stream().map(Marker::toMarkerPoint).toList();
+    }
+
+    private List<Marker> findNear(String lat, String lng, Marker.Type type){
+        Double rng = 0.016;
+        if (type==null) return markerRepository.findNear(Double.valueOf(lat), Double.valueOf(lng), rng);
+        else return markerRepository.findNearAndType(Double.valueOf(lat), Double.valueOf(lng), rng, type);
     }
 
     @Transactional
@@ -39,7 +51,7 @@ public class MarkerServiceImpl {
         String list = mapWebClient.getList();
         HospitalDTO[] hospitalDTOS = HospitalUtil.getMapInfo(list);
 
-        List<Marker> markerList = dtoToMapNode(hospitalDTOS, Marker.Type.HOSPITAL);
+        List<Marker> markerList = dtoToMapNode(hospitalDTOS, Marker.Type.PHARMACY);
         saveMapNodes(markerList);
     }
 
