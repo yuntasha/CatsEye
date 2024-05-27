@@ -1,6 +1,8 @@
 package capstone.replyRecoommend.marker.domain;
 
 import capstone.replyRecoommend.global.entity.BaseEntity;
+import capstone.replyRecoommend.global.exception.BusinessException;
+import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
 import capstone.replyRecoommend.marker.dto.MarkerRes;
 import capstone.replyRecoommend.marker.web.dto.HospitalDTO;
 import jakarta.persistence.*;
@@ -14,6 +16,8 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @Getter
 @Table(name = "MAPNODE")
+@Builder
+@AllArgsConstructor
 public class Marker extends BaseEntity {
 
     @Id @Column(name = "node_id")
@@ -61,6 +65,13 @@ public class Marker extends BaseEntity {
         PHARMACY("Pharmacy");
 
         private final String value;
+
+        public static Type setType(String value) throws BusinessException{
+            if (value == null) return null;
+            else if (value.equals("Hospital")) return Type.HOSPITAL;
+            else if (value.equals("Pharmacy")) return Type.PHARMACY;
+            else throw new BusinessException(CommonErrorCode.TYPE_NOT_EXIST);
+        }
     }
 
     public MarkerRes.MarkerPointRes toMarkerPoint(){
