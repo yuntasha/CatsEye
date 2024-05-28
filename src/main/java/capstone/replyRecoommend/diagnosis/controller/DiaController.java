@@ -21,18 +21,14 @@ public class DiaController {
      * 작성자 : 정주현
      * 내 반려동물 진단하기(사진 업로드)
      */
-    /*
+
     @PostMapping("/upload")
-    public DiaDtoRes.searchDiagnosis diagnosis(@RequestPart MultipartFile petImage, @RequestParam Long petId,
-                          @AuthenticationPrincipal Long userId){
-        diaService.diagnosis(petImage,userId,petId);
+    public SuccessResponse<DiaDtoRes.diagnosisRes> diagnosis(@RequestPart MultipartFile petImage, @RequestParam Long petId,
+                                                             @AuthenticationPrincipal Long userId){
+        DiaDtoRes.diagnosisRes str = diaService.diagnosis(petImage,userId,petId);
 
-        return SuccessResponse.success();
-
+        return SuccessResponse.success(str);
     }
-    */
-
-
 
     /**
      * 작성자 : 정주현
@@ -41,8 +37,8 @@ public class DiaController {
 
     @GetMapping("/search")
     public SuccessResponse<List<DiaDtoRes.searchDiagnosis>> searchDiagnosis(//@RequestParam(value = "offset", defaultValue = "0") int offset,
-                                                                           // @RequestParam(value = "limit", defaultValue= "10") int limit,
-                                                        @AuthenticationPrincipal Long userId){
+                                                                            // @RequestParam(value = "limit", defaultValue= "10") int limit,
+                                                                            @AuthenticationPrincipal Long userId){
 
         List<DiaDtoRes.searchDiagnosis> searchDiagnosisList = diaService.searchDiagnosis(userId);
 
@@ -51,4 +47,3 @@ public class DiaController {
     }
 
 }
-

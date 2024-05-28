@@ -15,4 +15,20 @@ public class DiaDtoRes {
         private DiagnosisResult diagnosisResult;
         private String diagnosisImageUrl;
     }
+
+    @Builder
+    @Getter
+    public static class flaskRes{
+        private String result;
+    }
+
+    @Builder
+    @Getter
+    public static class diagnosisRes{
+        private Long diagnosisId;
+        private String petName;
+        private DiagnosisResult result;
+        private LocalDateTime time;
+    }
+
 }

@@ -5,25 +5,24 @@ import capstone.replyRecoommend.auth.repository.UserRepository;
 import capstone.replyRecoommend.config.S3Uploader;
 import capstone.replyRecoommend.diagnosis.converter.DiaConverter;
 import capstone.replyRecoommend.diagnosis.domain.Diagnosis;
+import capstone.replyRecoommend.diagnosis.domain.Enum.DiagnosisResult;
 import capstone.replyRecoommend.diagnosis.dto.DiaDtoRes;
 import capstone.replyRecoommend.diagnosis.repository.DiaRepository;
+import capstone.replyRecoommend.diagnosis.web.FlaskWebClient;
 import capstone.replyRecoommend.global.exception.BusinessException;
 import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
 import capstone.replyRecoommend.pet.domain.Enum.PetStatus;
 import capstone.replyRecoommend.pet.domain.Pet;
 import capstone.replyRecoommend.pet.repository.PetRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,34 +30,46 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DiaServiceImpl implements DiaService {
 
+    private final FlaskWebClient flaskWebClient;
+
     private final PetRepository petRepository;
     private final UserRepository userRepository;
     private final DiaRepository diaRepository;
     private final S3Uploader s3Uploader;
-    private final ObjectMapper objectMapper;
 
-/*
+
     //진단하기(사진 업로드)
     @Override
-    public DiaDtoRes.searchDiagnosis diagnosis(MultipartFile petImage, Long userId, Long petId) throws JsonProcessingException {
+    @Transactional
+    public DiaDtoRes.diagnosisRes diagnosis(MultipartFile petImage, Long userId, Long petId) {
         Pet pet = petRepository.findById(petId).orElseThrow(()->new BusinessException(CommonErrorCode.PET_NOT_FOUND));
 
         String fileUrl = s3Uploader.upload(petImage,"DiaImage");
 
-        RestTemplate restTemplate = new RestTemplate();
+        // Flask 서버에 전송할 요청 본문을 생성한다
+        Map<String, String> requestPayload = new HashMap<>();
+        requestPayload.put("fileUrl", fileUrl);
 
-        HttpHeaders headers = new HttpHeaders();
+        Map<String, String> result = flaskWebClient.flaskReq(requestPayload);
 
-        //파라미터로 들어온 dto를 JSON 객체로 변환
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        DiagnosisResult diagnosisResult;
 
-        String param = objectMapper.writeValueAsString(petImage);
+        if(result.get("result").equals("abnormal")){
+            diagnosisResult = DiagnosisResult.ABNORMAL;
+        }
+        else{
+            diagnosisResult = DiagnosisResult.NORMAL;
+        }
 
-        HttpEntity<String> entity = new HttpEntity<>(param , headers);
+        Diagnosis diagnosis = Diagnosis.createDiagnosis(pet,fileUrl,diagnosisResult);
+
+        diaRepository.save(diagnosis);
+
+        return DiaConverter.diagnosisRulDto(diagnosis,pet);
 
 
     }
- */
+
 
     @Override
     //진단 내역 조회
