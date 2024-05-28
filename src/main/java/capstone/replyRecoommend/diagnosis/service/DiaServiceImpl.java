@@ -43,6 +43,12 @@ public class DiaServiceImpl implements DiaService {
     @Transactional
     public DiaDtoRes.diagnosisRes diagnosis(MultipartFile petImage, Long userId, Long petId) {
         Pet pet = petRepository.findById(petId).orElseThrow(()->new BusinessException(CommonErrorCode.PET_NOT_FOUND));
+        User user = userRepository.findById(userId).orElseThrow(()->new BusinessException(CommonErrorCode.USER_NOT_FOUND));
+
+        if(!pet.getUser().equals(user)){
+            throw new BusinessException(CommonErrorCode.PET_USER_NOT_MATCH);
+        }
+
 
         String fileUrl = s3Uploader.upload(petImage,"DiaImage");
 
