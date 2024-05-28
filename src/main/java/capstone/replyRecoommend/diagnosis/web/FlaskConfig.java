@@ -11,9 +11,8 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 public class FlaskConfig {
 
-    @Value("web.flask.server.url")
+    @Value("${web.flask.server.url}")
     private String flaskServerUrl;
-
     @Bean
     public FlaskWebClient FlaskWebClient(){
         return new FlaskWebClient(flaskServerUrl);
