@@ -1,5 +1,6 @@
 package capstone.replyRecoommend.security;
 
+import capstone.replyRecoommend.auth.handler.AuthFailureHandler;
 import capstone.replyRecoommend.auth.handler.AuthSuccessHandler;
 import capstone.replyRecoommend.auth.repository.UserRepository;
 import capstone.replyRecoommend.auth.service.AuthService;
@@ -40,7 +41,8 @@ public class SecurityConfig {
                         .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
                         .accessDeniedHandler(new JwtAccessDeniedHandler()))
                 .oauth2Login(oAuth -> oAuth
-                        .successHandler(new AuthSuccessHandler(userService)))
+                        .successHandler(new AuthSuccessHandler(userService))
+                        .failureHandler(new AuthFailureHandler()))
                 .build();
     }
 }
