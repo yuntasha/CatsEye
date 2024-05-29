@@ -22,7 +22,8 @@ public class CorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) preRequest;
         HttpServletResponse response = (HttpServletResponse) preResponse;
 
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000, https://cats-eye-it.netlify.app");
+        response.setHeader("Access-Control-Allow-Origin", "https://cats-eye-it.netlify.app");
+        response.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods","*");
         response.setHeader("Access-Control-Max-Age", "3600");
