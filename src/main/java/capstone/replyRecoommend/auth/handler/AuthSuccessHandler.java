@@ -39,7 +39,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private String makeUrl(TokenMapper tokens){
         return UriComponentsBuilder.newInstance()
-                .scheme("https")
+                .scheme("http")
                 .host("localhost")
                 .port(3000)
                 .queryParam("accessToken", tokens.getAccessToken())
