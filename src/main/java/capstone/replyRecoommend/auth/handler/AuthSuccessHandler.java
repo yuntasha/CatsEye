@@ -34,17 +34,14 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
                         .email(attributes.get("email").toString())
                         .profileUrl(attributes.get("picture").toString())
                         .build());
-        String serverName = request.getServerName();
-        int serverPort = request.getServerPort();
-        serverPort = serverName.equals("localhost") && serverPort == 8080 ?3000:serverPort;
-        response.sendRedirect(makeUrl(serverName, serverPort, tokenMapper));
+        response.sendRedirect(makeUrl(tokenMapper));
     }
 
-    private String makeUrl(String serverName, int serverPort, TokenMapper tokens){
+    private String makeUrl(TokenMapper tokens){
         return UriComponentsBuilder.newInstance()
                 .scheme("https")
-                .host(serverName)
-                .port(serverPort)
+                .host("localhost")
+                .port(3000)
                 .queryParam("accessToken", tokens.getAccessToken())
                 .queryParam("refreshToken", tokens.getRefreshToken())
                 .build(true)
