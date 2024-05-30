@@ -3,14 +3,15 @@ package capstone.replyRecoommend.diagnosis.dto;
 import capstone.replyRecoommend.diagnosis.domain.Enum.DiagnosisResult;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class DiaDtoRes {
 
     @Builder
     @Getter
     public static class searchDiagnosis{
-        private LocalDateTime time;
+        private LocalDate day;
         private String name;
         private DiagnosisResult diagnosisResult;
         private String diagnosisImageUrl;
@@ -28,7 +29,9 @@ public class DiaDtoRes {
         private Long diagnosisId;
         private String petName;
         private DiagnosisResult result;
-        private LocalDateTime time;
+        private LocalDate day;
+        private String time;
+
     }
 
 }
