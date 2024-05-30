@@ -34,31 +34,20 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
                         .email(attributes.get("email").toString())
                         .profileUrl(attributes.get("picture").toString())
                         .build());
-        String host = request.getHeader("host");
-        host = host.equals("localhost:8080")?"localhost:3000":host;
-        response.sendRedirect(makeUrl(host, tokenMapper));
+        String serverName = request.getServerName();
+        int serverPort = request.getServerPort();
+        serverPort = serverName.equals("localhost") && serverPort == 8080 ?3000:serverPort;
+        response.sendRedirect(makeUrl(serverName, serverPort, tokenMapper));
     }
 
-    private String makeUrl(String host, TokenMapper tokens){
-        String[] hostAndPort = host.split(":");
-        if (hostAndPort.length==2) {
-            return UriComponentsBuilder.newInstance()
-                    .scheme("https")
-                    .host(hostAndPort[0])
-                    .port(Integer.parseInt(hostAndPort[1]))
-                    .queryParam("accessToken", tokens.getAccessToken())
-                    .queryParam("refreshToken", tokens.getRefreshToken())
-                    .build(true)
-                    .toString();
-        }
-        else {
-            return UriComponentsBuilder.newInstance()
-                    .scheme("https")
-                    .host(hostAndPort[0])
-                    .queryParam("accessToken", tokens.getAccessToken())
-                    .queryParam("refreshToken", tokens.getRefreshToken())
-                    .build(true)
-                    .toString();
-        }
+    private String makeUrl(String serverName, int serverPort, TokenMapper tokens){
+        return UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host(serverName)
+                .port(serverPort)
+                .queryParam("accessToken", tokens.getAccessToken())
+                .queryParam("refreshToken", tokens.getRefreshToken())
+                .build(true)
+                .toString();
     }
 }
