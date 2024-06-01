@@ -1,7 +1,7 @@
-package capstone.replyRecoommend.auth.converter;
+package capstone.replyRecoommend.global.auth.converter;
 
-import capstone.replyRecoommend.auth.domain.User;
-import capstone.replyRecoommend.auth.dto.UserDtoRes;
+import capstone.replyRecoommend.global.auth.domain.User;
+import capstone.replyRecoommend.global.auth.dto.UserDtoRes;
 
 public class UserConverter {
 

@@ -1,17 +1,15 @@
-package capstone.replyRecoommend.auth.service;
+package capstone.replyRecoommend.global.auth.service;
 
-import capstone.replyRecoommend.auth.converter.UserConverter;
-import capstone.replyRecoommend.auth.domain.User;
-import capstone.replyRecoommend.auth.dto.AuthRequestDTO;
-import capstone.replyRecoommend.auth.dto.TokenMapper;
-import capstone.replyRecoommend.auth.dto.UserDtoRes;
-import capstone.replyRecoommend.auth.repository.UserRepository;
+import capstone.replyRecoommend.global.auth.converter.UserConverter;
+import capstone.replyRecoommend.global.auth.domain.User;
+import capstone.replyRecoommend.global.auth.dto.AuthRequestDTO;
+import capstone.replyRecoommend.global.auth.dto.TokenMapper;
+import capstone.replyRecoommend.global.auth.dto.UserDtoRes;
+import capstone.replyRecoommend.global.auth.repository.UserRepository;
 import capstone.replyRecoommend.global.exception.BusinessException;
 import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
-import capstone.replyRecoommend.security.JwtFactory;
-import capstone.replyRecoommend.security.utils.JwtUtil;
+import capstone.replyRecoommend.global.security.JwtFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

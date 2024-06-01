@@ -1,7 +1,7 @@
 package capstone.replyRecoommend.pet.service;
 
-import capstone.replyRecoommend.auth.domain.User;
-import capstone.replyRecoommend.auth.repository.UserRepository;
+import capstone.replyRecoommend.global.auth.domain.User;
+import capstone.replyRecoommend.global.auth.repository.UserRepository;
 import capstone.replyRecoommend.config.S3Uploader;
 import capstone.replyRecoommend.global.exception.BusinessException;
 import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
@@ -11,13 +11,11 @@ import capstone.replyRecoommend.pet.domain.Pet;
 import capstone.replyRecoommend.pet.dto.PetDtoReq;
 import capstone.replyRecoommend.pet.dto.PetDtoRes;
 import capstone.replyRecoommend.pet.repository.PetRepository;
-import jakarta.persistence.OneToMany;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 

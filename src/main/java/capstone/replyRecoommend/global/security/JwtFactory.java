@@ -1,9 +1,9 @@
-package capstone.replyRecoommend.security;
+package capstone.replyRecoommend.global.security;
 
-import capstone.replyRecoommend.auth.dto.TokenMapper;
+import capstone.replyRecoommend.global.auth.dto.TokenMapper;
 import capstone.replyRecoommend.global.exception.BusinessException;
 import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
-import capstone.replyRecoommend.security.utils.JwtUtil;
+import capstone.replyRecoommend.global.security.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

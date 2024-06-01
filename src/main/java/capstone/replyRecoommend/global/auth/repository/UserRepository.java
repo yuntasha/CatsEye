@@ -1,6 +1,6 @@
-package capstone.replyRecoommend.auth.repository;
+package capstone.replyRecoommend.global.auth.repository;
 
-import capstone.replyRecoommend.auth.domain.User;
+import capstone.replyRecoommend.global.auth.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

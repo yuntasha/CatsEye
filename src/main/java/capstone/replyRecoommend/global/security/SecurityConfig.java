@@ -1,14 +1,12 @@
-package capstone.replyRecoommend.security;
+package capstone.replyRecoommend.global.security;
 
-import capstone.replyRecoommend.auth.handler.AuthFailureHandler;
-import capstone.replyRecoommend.auth.handler.AuthSuccessHandler;
-import capstone.replyRecoommend.auth.repository.UserRepository;
-import capstone.replyRecoommend.auth.service.AuthService;
+import capstone.replyRecoommend.global.auth.handler.AuthFailureHandler;
+import capstone.replyRecoommend.global.auth.handler.AuthSuccessHandler;
+import capstone.replyRecoommend.global.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;

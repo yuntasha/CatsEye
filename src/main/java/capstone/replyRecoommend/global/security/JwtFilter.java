@@ -1,13 +1,12 @@
-package capstone.replyRecoommend.security;
+package capstone.replyRecoommend.global.security;
 
-import capstone.replyRecoommend.auth.domain.User;
-import capstone.replyRecoommend.auth.service.AuthService;
-import capstone.replyRecoommend.security.utils.JwtUtil;
+import capstone.replyRecoommend.global.auth.domain.User;
+import capstone.replyRecoommend.global.auth.service.AuthService;
+import capstone.replyRecoommend.global.security.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
