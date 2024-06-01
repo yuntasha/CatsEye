@@ -1,7 +1,7 @@
 package capstone.replyRecoommend.diagnosis.service;
 
-import capstone.replyRecoommend.auth.domain.User;
-import capstone.replyRecoommend.auth.repository.UserRepository;
+import capstone.replyRecoommend.global.auth.domain.User;
+import capstone.replyRecoommend.global.auth.repository.UserRepository;
 import capstone.replyRecoommend.config.S3Uploader;
 import capstone.replyRecoommend.diagnosis.converter.DiaConverter;
 import capstone.replyRecoommend.diagnosis.domain.Diagnosis;
@@ -20,6 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +75,15 @@ public class DiaServiceImpl implements DiaService {
 
         diaRepository.save(diagnosis);
 
-        return DiaConverter.diagnosisRulDto(diagnosis,pet);
+        LocalDateTime dateTime = diagnosis.getDiagnosisDay();
+
+        LocalDate date = dateTime.toLocalDate();
+        LocalTime time = dateTime.toLocalTime();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formattedTime = time.format(formatter);
+
+        return DiaConverter.diagnosisRulDto(diagnosis,pet,date,formattedTime);
 
 
     }

@@ -1,9 +1,9 @@
-package capstone.replyRecoommend.auth.controller;
+package capstone.replyRecoommend.global.auth.controller;
 
-import capstone.replyRecoommend.auth.dto.AuthRequestDTO;
-import capstone.replyRecoommend.auth.dto.TokenMapper;
-import capstone.replyRecoommend.auth.dto.UserDtoRes;
-import capstone.replyRecoommend.auth.service.AuthService;
+import capstone.replyRecoommend.global.auth.dto.AuthRequestDTO;
+import capstone.replyRecoommend.global.auth.dto.TokenMapper;
+import capstone.replyRecoommend.global.auth.dto.UserDtoRes;
+import capstone.replyRecoommend.global.auth.service.AuthService;
 import capstone.replyRecoommend.global.response.SuccessResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

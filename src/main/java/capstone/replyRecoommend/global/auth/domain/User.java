@@ -1,6 +1,6 @@
-package capstone.replyRecoommend.auth.domain;
+package capstone.replyRecoommend.global.auth.domain;
 
-import capstone.replyRecoommend.auth.dto.AuthRequestDTO;
+import capstone.replyRecoommend.global.auth.dto.AuthRequestDTO;
 import capstone.replyRecoommend.global.entity.BaseEntity;
 import capstone.replyRecoommend.pet.domain.Pet;
 import jakarta.persistence.*;

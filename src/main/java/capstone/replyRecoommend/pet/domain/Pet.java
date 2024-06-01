@@ -1,6 +1,6 @@
 package capstone.replyRecoommend.pet.domain;
 
-import capstone.replyRecoommend.auth.domain.User;
+import capstone.replyRecoommend.global.auth.domain.User;
 import capstone.replyRecoommend.diagnosis.domain.Diagnosis;
 import capstone.replyRecoommend.global.entity.BaseEntity;
 import capstone.replyRecoommend.pet.domain.Enum.PetStatus;

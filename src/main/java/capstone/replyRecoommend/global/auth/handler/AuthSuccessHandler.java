@@ -1,8 +1,8 @@
-package capstone.replyRecoommend.auth.handler;
+package capstone.replyRecoommend.global.auth.handler;
 
-import capstone.replyRecoommend.auth.dto.AuthRequestDTO;
-import capstone.replyRecoommend.auth.dto.TokenMapper;
-import capstone.replyRecoommend.auth.service.AuthService;
+import capstone.replyRecoommend.global.auth.dto.AuthRequestDTO;
+import capstone.replyRecoommend.global.auth.dto.TokenMapper;
+import capstone.replyRecoommend.global.auth.service.AuthService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

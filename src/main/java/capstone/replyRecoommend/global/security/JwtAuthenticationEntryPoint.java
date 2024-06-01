@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.security;
+package capstone.replyRecoommend.global.security;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
