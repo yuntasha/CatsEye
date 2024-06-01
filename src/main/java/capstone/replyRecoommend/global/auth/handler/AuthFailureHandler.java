@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.auth.handler;
+package capstone.replyRecoommend.global.auth.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

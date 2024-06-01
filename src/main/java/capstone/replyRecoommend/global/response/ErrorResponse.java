@@ -1,7 +1,7 @@
 package capstone.replyRecoommend.global.response;
 
 import capstone.replyRecoommend.global.exception.errorcode.ErrorCode;
-import capstone.replyRecoommend.security.JwtException;
+import capstone.replyRecoommend.global.security.JwtException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;

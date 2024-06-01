@@ -1,7 +1,7 @@
 package capstone.replyRecoommend.diagnosis.service;
 
-import capstone.replyRecoommend.auth.domain.User;
-import capstone.replyRecoommend.auth.repository.UserRepository;
+import capstone.replyRecoommend.global.auth.domain.User;
+import capstone.replyRecoommend.global.auth.repository.UserRepository;
 import capstone.replyRecoommend.config.S3Uploader;
 import capstone.replyRecoommend.diagnosis.converter.DiaConverter;
 import capstone.replyRecoommend.diagnosis.domain.Diagnosis;

@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.security.utils;
+package capstone.replyRecoommend.global.security.utils;
 
 import capstone.replyRecoommend.global.exception.BusinessException;
 import capstone.replyRecoommend.global.exception.errorcode.CommonErrorCode;
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-import static capstone.replyRecoommend.security.JwtException.EXPIRED_TOKEN;
-import static capstone.replyRecoommend.security.JwtException.UNSUPPORTED_TOKEN;
+import static capstone.replyRecoommend.global.security.JwtException.EXPIRED_TOKEN;
+import static capstone.replyRecoommend.global.security.JwtException.UNSUPPORTED_TOKEN;
 
 @Component
 @RequiredArgsConstructor

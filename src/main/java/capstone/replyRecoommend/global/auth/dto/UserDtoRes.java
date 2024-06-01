@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.auth.dto;
+package capstone.replyRecoommend.global.auth.dto;
 
 import lombok.Builder;
 import lombok.Getter;

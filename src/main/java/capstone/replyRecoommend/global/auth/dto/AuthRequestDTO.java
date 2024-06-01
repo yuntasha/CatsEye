@@ -1,4 +1,4 @@
-package capstone.replyRecoommend.auth.dto;
+package capstone.replyRecoommend.global.auth.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
