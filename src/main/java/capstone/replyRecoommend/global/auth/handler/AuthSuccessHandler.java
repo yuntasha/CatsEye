@@ -39,9 +39,8 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private String makeUrl(TokenMapper tokens){
         return UriComponentsBuilder.newInstance()
-                .scheme("http")
-                .host("localhost")
-                .port(3000)
+                .scheme("https")
+                .host("https://cats-eye-it.netlify.app/")
                 .queryParam("accessToken", tokens.getAccessToken())
                 .queryParam("refreshToken", tokens.getRefreshToken())
                 .build(true)

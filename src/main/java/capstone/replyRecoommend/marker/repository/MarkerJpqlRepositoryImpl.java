@@ -36,6 +36,14 @@ public class MarkerJpqlRepositoryImpl implements MarkerJpqlRepository{
         return query.getResultList();
     }
 
+    /**
+     * 유저 위치 정보 기반으로 근처 병원/약국 찾기
+     * @param lat 위도
+     * @param lng 경도
+     * @param rng 범위
+     * @param type 병원/약국
+     * @return 근처 병원/약국(리스트) 리스트
+     */
     public List<Marker> findNearAndType(Double lat, Double lng, Double rng, Marker.Type type){
 
 
