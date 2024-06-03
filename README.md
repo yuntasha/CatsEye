@@ -39,7 +39,7 @@
 >- OS : Ubuntu 22.04 LTS
 >- Java : Oracle Open JDK "17"
 >- SpringBoot : 3.2.4
->- AWS RDS : Freetier t2.micro 버스터블 클래스 & MySQL 8.0.33 
+>- AWS RDS : Freetier t2.micro 버스터블 클래스 & MariaDB
 ---
 
 ### 2) AWS 내부 아키텍처
