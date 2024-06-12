@@ -29,7 +29,7 @@ public class GptWebClient {
        return new GptRequest(recommendModel,length);
     }
 
-    public GptResponse replyRecommend(GptRequest gptRequest){
+    public GptResponse assistantRes(GptRequest gptRequest){
         return webClient.post()
                 .bodyValue(gptRequest)
                 .retrieve()
