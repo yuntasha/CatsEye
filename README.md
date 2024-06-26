@@ -1,17 +1,17 @@
-# [REST API 서버] "고양이 눈 질병 진단/챗봇 서비스"
+# [REST API 서버] "자기개발 및 공부 시간 측명 및 화면 공유 서비스"
 
-![image](https://github.com/yuntasha/replyRecoommend/assets/131857282/9f908fa2-7db7-4294-9c01-f6eaea364b68)
+![image](<img width="858" alt="image" src="https://github.com/Jungjuhyeon/BOJ/assets/131857282/4e2e5ac9-ce24-4dda-a2d8-d655ecf3b327">)
 
 
-> 초기에 발생되는 눈 질병에 대해서 빠르게 진단하고 챗봇에게 상당받는 서비스
+> 자신의 공부 시간 측정/ 투두리스트 작성/ 화면공유 기능을 통한 팀구성/ 자기개발을 위한 서비스
 >
 ---
 
 ### 🧑‍🤝‍🧑 맴버구성
- - 팀원1 : 신재희 - 구글 소셜로그인, CICD 구축, 지도 관련(map), 초기 gpt api 세팅
- - 팀원2 : 정주현 - 인공지능 모델, diagnosis(CRUD), pet(CRUD), Chat-GPT 챗봇제작, flask서버 연동-springboot 서버 연동
- - 팀원3 : 최지안 - 프론트엔드
- - 팀원4 : 강은서 - 보고서 작성
+ - 팀원1 : 정주현 - 사설 로그인(회원관리),마이페이지, 라이브룸(CRUD), 투두리스트(CRUD), 캘린더(CRUD), CICD 구축
+ - 팀원2 : 류기현 - 그로우룸(CRUD),댓글 및 대댓글
+ - 팀원3 : 진명재 - github 초기시작 제작, 초기 응답 코드 통일및 Domain 정의
+ - 팀원4 : 김지환 - 화면 공유 및 캠 공유
 
 
 ---
@@ -19,63 +19,61 @@
 ## 🍩 프로젝트 개요
 
 ### 서비스 소개
-- 고양이 눈의 질병을 진단해주는 서비스
-- 진단 후 인근 병원혹은 챗봇에게 문의해보는 서비스
-- 초기 진단으로 졀병을 예방하는 서비스
-
+- 자기개발(갓생)을 위한 서비스
+- 자신의 공부 시간을 측정할 수 있는 서비스
+- 투두리스트 작성 서비스
+- 다른 팀원과 그룹을 구성 후 화면공유 하여 같이 공부하는 서비스
 
 
 ### 진행사항
-- 울산대학교 졸업작품(캡스톤 디자인)
+- UMC 5th GroupUP Project [기한 약 40~50일]
 ---
 
 ## 🍠서버 구조도
 
-### 1) 프론트 - 백엔드 - flask - gpt
-![image](https://github.com/yuntasha/replyRecoommend/assets/131857282/f2966369-4b96-465b-9b2b-d39ec9814d1d)
+### 1) CICD 흐름도
+<img width="420" alt="image" src="https://github.com/yuntasha/replyRecoommend/assets/131857282/346c7eb6-f8fd-4b17-b214-019b972f6237">
 
 
 >- AWS EC2 : FreeTier t2.micro
 >- OS : Ubuntu 22.04 LTS
->- Java : Oracle Open JDK "17"
->- SpringBoot : 3.2.4
->- AWS RDS : Freetier t2.micro 버스터블 클래스 & MariaDB
+>- Java : Oracle Open JDK "11"
+>- SpringBoot : 2.7.17
+>- AWS RDS : Freetier t2.micro 버스터블 클래스 & Mysql
 ---
 
-### 2) AWS 내부 아키텍처
-
-![image](https://github.com/yuntasha/replyRecoommend/assets/131857282/32f50f1c-40cf-46df-af29-7ed09fa03f38)
-
----
-
-
-### 3) CICD 흐름도
-
-<img width="420" alt="image" src="https://github.com/yuntasha/replyRecoommend/assets/131857282/346c7eb6-f8fd-4b17-b214-019b972f6237">
 
 
 ---
 ## 🌮기능 정의
 
-#### 1. 소셜로그인(구글)
-- 회원가입, 본인인증, 로그인, 로그아웃, 내정보 조회
+#### 1. 사설로그인
+- 회원가입, 본인인증(이메일인증), 비밀번호 재설정,  로그인, 로그아웃, 회원탈퇴
 
-#### 2. 반려동물
-- 반려동물 추가, 반려동물 삭제
-- 반려동물 목록 조회
+#### 2. 마이페이지
+- 마이페이지 조회, 프로필 사진/닉네임/이메일 변경, 개인 공부 누적 시간 조회(월별)
 
-#### 3. 진단하기
-- 반려동물 진단하기(사진 업로드)
-- 반려동물 진단 내역 조회
+#### 3. 투두리스트
+- 투두리스트 들록/조회/상태수정/내용수정
 
-#### 4. 챗봇(Chat GPT)
-- 채팅 시작
-- 채팅방 삭제
+#### 3. 캘린더
+- 캘린더 내용 들록/조회(선택한 날짜)
+- 캘린더 조회(달 기준)
+- 캘린더 글(목록) 수정/상태 수정(줄 긋기)
+- 캘린더 해당 날짜 색상 수정/ 캘린더 글(목록) 삭제
 
-#### 5. 주변 약국 지도
-- 지도에 병원/약국 표시
-- 병원/약국 세부정보
-- 인근 병원/약국 조회
+#### 4. 라이브룸
+- 그로우룸의 좋아요 설정
+- 라이브룸 참여자 목록 조회
+- 총 누적 시간 랭킹 -일/주/월 별
+- 타이머 클릭시 멈춤
+
+#### 5. 그로우룸
+- 그로우룸 생성,조회,삭제,수정
+- 그로우룸 조회수 
+
+- #### 6. 댓글
+
 
 
 ---
@@ -88,9 +86,9 @@
 
 ---
 ## 🍚플로우 차트
-![image](https://github.com/yuntasha/replyRecoommend/assets/131857282/21425978-15b4-417f-8aef-f7ff1c1ef630)
+
 
 
 --- 
 ## 🧀ERD
-![erd](https://github.com/yuntasha/replyRecoommend/assets/131857282/28798dc9-4e9f-4775-9dde-ddc24c4f15f9)
+![erd](https://github.com/Jungjuhyeon/BOJ/assets/131857282/f23fe968-b8ae-4ca6-84ac-91f3b73f3ed9)
